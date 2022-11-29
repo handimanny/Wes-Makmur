@@ -33,13 +33,15 @@ Route::get('halaman/{id}/lihat', [HomeController::class,'halaman'])->name('halam
 Route::resource('rekomendasi', RekomendasiController::class);
 
 // Route::middleware(['auth','admin','editor'])->group(function () {
+// });
+Route::middleware(['auth'])->group(function () {
     Route::resource('kategori', KategoriController::class);
     Route::get('deletekategori/{id}', [KategoriController::class,'destroy'])->name('deletekategori');
     Route::resource('postingan', PostinganController::class);
     Route::get('deletepostingan/{id}', [PostinganController::class,'destroy'])->name('deletepostingan');
     Route::resource('produk', ProdukController::class);
     Route::get('deleteproduk/{id}', [ProdukController::class,'destroy'])->name('deleteproduk');
-// });
+});
 
 Route::middleware(['auth','admin'])->group(function () {
     Route::resource('pengguna', PenggunaController::class);

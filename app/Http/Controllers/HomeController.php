@@ -47,7 +47,9 @@ class HomeController extends Controller
         $data = Postingan::findOrFail($id);
         $kategori = Kategori::all();
         $user = User::all();
-        $produk = Produk::where('status', 'tampil')->get();
+        
+        $produk = Produk::select('*')->where('kategori_id', '=', $data->kategori_id)->where('status', 'tampil')->get();
+
         return view('halaman', compact('data','kategori','user','produk'));
     }
 }

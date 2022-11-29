@@ -51,6 +51,7 @@
                     @endforeach
                 </select>
                 </div>
+                @if (Auth::user()->role == 'admin')
                 <div class="mb-3">
                     <label for="status" class="form-label @error('status') is-invalid @enderror">Tambah Status</label>
                     <select name="status" id="status" class="form-control">
@@ -59,6 +60,7 @@
                         <option value="tampil">Tampil</option>
                     </select>
                 </div>
+                @endif
                 <button type="submit" class="btn btn-outline-primary">Submit</button>
                 </form>
                 </div>

@@ -50,7 +50,7 @@ class PostinganController extends Controller
             'tanggalDibuat' => 'required|string',
             'kategori_id' => 'required|string',
             'user_id' => 'required|string',
-            'status' => 'required|string',
+            'status' => 'string',
             ]);
             Postingan::create($validator);
             return redirect('/postingan')->with('success', 'berhasil tambah postingan');
@@ -99,7 +99,7 @@ class PostinganController extends Controller
             'tanggalDibuat' => 'required|string',
             'kategori_id' => 'required|string',
             'user_id' => 'required|string',
-            'status' => 'required|string',
+            'status' => 'string',
         ]);
         $data->update($validator);
         return redirect('/postingan')->with('success', 'berhasil edit postingan');

@@ -57,6 +57,7 @@
                     @endforeach
                 </select>
                 </div>
+                @if (Auth::user()->role == 'admin')
                 <div class="mb-3">
                 <label for="status" class="form-label">Edit Status</label>
                 <select class="form-control" id="status" name="status">
@@ -65,6 +66,7 @@
                     <option value="tidak"  @selected($data->status=='tidak')>Tidak Tampil</option>
                 </select>
                 </div>
+                @endif
                 <button type="submit" class="btn btn-outline-primary">Submit</button>
                 </form>
 

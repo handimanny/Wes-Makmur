@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\Kategori;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -41,6 +42,22 @@ class DatabaseSeeder extends Seeder
             'email'=> 'user@mail.com',
             'password'=> Hash::make('user@mail.com'),
             'role'=> 'user',
+        ]);
+        Kategori::create([
+            'namaKategori'=> 'Kategori 1',
+            'descKategori'=> 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
+        ]);
+        Kategori::create([
+            'namaKategori'=> 'Kategori 2',
+            'descKategori'=> 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
+        ]);
+        Kategori::create([
+            'namaKategori'=> 'Kategori 3',
+            'descKategori'=> 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
+        ]);
+        Kategori::create([
+            'namaKategori'=> 'Kategori 4',
+            'descKategori'=> 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
         ]);
     }
 }

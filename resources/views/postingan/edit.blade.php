@@ -23,7 +23,8 @@
                 </div>
                 <div class="mb-3">
                     <label for="isi" class="form-label @error('isi') is-invalid @enderror">Edit Isi</label>
-                    <input type="text" class="form-control" name="isi" id="isi" placeholder="Input Isi" value="{{$data->isi}}">
+                    <!-- <input type="text" class="form-control" name="isi" id="isi" placeholder="Input Isi" value="{{$data->isi}}"> -->
+                    <textarea name="isi" id="isi" class="form-control" cols="30" rows="10" placeholder="Input Isi">{{$data->isi}}</textarea>
                     @error('isi')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -57,6 +58,7 @@
                     @endforeach
                 </select>
                 </div>
+                @if (Auth::user()->role == 'admin')
                 <div class="mb-3">
                 <label for="status" class="form-label">Edit Status</label>
                 <select class="form-control" id="status" name="status">
@@ -65,6 +67,7 @@
                     <option value="tidak"  @selected($data->status=='tidak')>Tidak Tampil</option>
                 </select>
                 </div>
+                @endif
                 <button type="submit" class="btn btn-outline-primary">Submit</button>
                 </form>
 

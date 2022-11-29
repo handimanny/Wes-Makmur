@@ -51,7 +51,7 @@ class ProdukController extends Controller
             'harga' => 'required|string',
             'descProduk' => 'required|string',
             'kategori_id' => 'required|string',
-            'status' => 'required|string',
+            'status' => 'string',
           ]);
           $validator['foto'] = $request->file('foto')->store('img');
           Produk::create($validator);

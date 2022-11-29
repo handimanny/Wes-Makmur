@@ -16,10 +16,10 @@
                                 <label>Keluhan :</label>
                                 <select name="keluhan" class="form-control" >
                                     <option value="">Pilih keluhan</option>
-                                    <option value="keseleo">Keseleo dan kurang nafsu makan</option>
-                                    <option value="pegal">Pegal-pegal</option>
-                                    <option value="darah">Darah tinggi dan gula darah</option>
-                                    <option value="kram">Kram perut dan masuk angin</option>
+                                    <option value="Keseleo dan kurang nafsu makan">Keseleo dan kurang nafsu makan</option>
+                                    <option value="Pegal-pegal">Pegal-pegal</option>
+                                    <option value="Darah tinggi dan gula darah">Darah tinggi dan gula darah</option>
+                                    <option value="Kram perut dan masuk angin">Kram perut dan masuk angin</option>
                                 </select>
                             </div>
                             <div class="col">
@@ -42,7 +42,7 @@
                             </tr>
                             <tr>
                                 <th>Khasiat</th>
-                                <td>{{$data['jamunya']}}</td>
+                                <td>{{$data['khasiatnya']}}</td>
                             </tr>
                             <tr>
                                 <th>Keluhan</th>

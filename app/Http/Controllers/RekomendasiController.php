@@ -15,19 +15,17 @@ class RekomendasiController extends Controller
     public function store(Request $request)
     {
         $keluhan = $request->keluhan;
-        $tahun = date('Y', strtotime($request->tahun));
+        // $tahun = $request->tahun;
         // dd($tahun);
     
-        $rek = new Penggunaan($keluhan, $tahun);
-        $umur = $rek->umur();
-        $jamu = $rek->namaJamu();
-        $saran = $rek->saran();
+        $rekom = new Penggunaan($keluhan, $request->tahun);
     
         $data = [
             'keluhannya' => $keluhan,
-            'umurnya' => $umur,
-            'jamunya' => $jamu,
-            'sarannya' => $saran,
+            'khasiatnya' => $rekom->khasiat(),
+            'umurnya' => $rekom->umur(),
+            'jamunya' => $rekom->namaJamu(),
+            'sarannya' => $rekom->saran(),
         ];
     
         return view('rekomendasi', compact('data'));
@@ -40,33 +38,44 @@ class Jamu
     public function __construct($keluhan, $tahun)
     {
         $this->keluhan = $keluhan;
-        $this->tahuns = $tahun;
+        $this->tahunLahir = date('Y', strtotime($tahun));
     }
 
     public function umur(){
-        $umur = date('Y')-$this->tahuns;
-        return $umur;
+        return date('Y')-$this->tahunLahir;
     }
     
     public function namaJamu()
     {
-        if($this->keluhan == 'keseleo' || $this->keluhan == 'kurang nafsu makan'){
-            $jamu = 'Beras Kencur';
-            return $jamu;
-        }else if($this->keluhan=='pegal'){
-            $jamu = 'Kunyit Asam';
-            return $jamu;
-        }else if($this->keluhan=='darah' || $this->keluhan == 'gula darah'){
-            $jamu = 'Brotowali';
-            return $jamu;
-        }else if($this->keluhan=='keram' || $this->keluhan == 'masuk angin'){
-            $jamu = 'Temulawak';
-            return $jamu;
+        if($this->keluhan == 'Keseleo dan kurang nafsu makan' || $this->keluhan == 'kurang nafsu makan'){
+            return 'Beras Kencur';
+        }else if($this->keluhan=='Pegal-pegal'){
+            return 'Kunyit Asam';
+        }else if($this->keluhan=='Darah tinggi dan gula darah' || $this->keluhan == 'gula darah'){
+            return 'Brotowali';
+        }else if($this->keluhan=='Kram perut dan masuk angin' || $this->keluhan == 'masuk angin'){
+            return 'Temulawak';
         }else{
-            $jamu = 'Tidak ditemukan jamu';
-            return $jamu;
+            return 'Tidak ditemukan jamu';
         }
     }
+
+    public function khasiat()
+    {
+        //menentukan khasiat berdasarkan keluhan
+        if ($this->namaJamu() == 'Beras Kencur') {
+            return "Meredakan keseleo dan menambah nafsu makan.";
+        }elseif ($this->namaJamu() == 'Kunyit Asam') {
+            return "Meredakan pegal-pegal.";
+        }elseif ($this->namaJamu() == 'Brotowali') {
+            return "Menurunkan kadar gula darah.";
+        }elseif ($this->namaJamu() == 'Temulawak') {
+            return "Meredakan kram perut.";
+        }else {
+            return "Tidak ditemukan khasiat";
+        }
+    }
+
 }
 
 class Penggunaan extends Jamu
