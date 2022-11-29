@@ -41,7 +41,6 @@ class Jamu
     {
         $this->keluhan = $keluhan;
         $this->tahuns = $tahun;
-        // dd($this->tahun);
     }
 
     public function umur(){
