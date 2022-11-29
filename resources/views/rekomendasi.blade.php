@@ -24,7 +24,7 @@
                             </div>
                             <div class="col">
                                 <label>Tahun Lahir :</label>
-                                <input class="form-control" type="date" name="thn" >
+                                <input class="form-control" type="date" name="tahun" >
                             </div>
                         </div>
                         <div class="mt-3" >

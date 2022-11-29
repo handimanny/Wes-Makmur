@@ -15,10 +15,10 @@ class RekomendasiController extends Controller
     public function store(Request $request)
     {
         $keluhan = $request->keluhan;
-        $tahunLahir = date('Y', strtotime($request->tahun));
-        
+        $tahun = date('Y', strtotime($request->tahun));
+        // dd($tahun);
     
-        $rek = new penggunaan($keluhan, $tahunLahir);
+        $rek = new Penggunaan($keluhan, $tahun);
         $umur = $rek->umur();
         $jamu = $rek->namaJamu();
         $saran = $rek->saran();
@@ -40,11 +40,12 @@ class Jamu
     public function __construct($keluhan, $tahun)
     {
         $this->keluhan = $keluhan;
-        $this->tahunLahir = $tahun;
+        $this->tahuns = $tahun;
+        // dd($this->tahun);
     }
 
     public function umur(){
-        $umur = date('Y')-$this->tahunLahir;
+        $umur = date('Y')-$this->tahuns;
         return $umur;
     }
     
