@@ -18,14 +18,14 @@ class RekomendasiController extends Controller
         // $tahun = $request->tahun;
         // dd($tahun);
     
-        $rekom = new Penggunaan($keluhan, $request->tahun);
+        $rekomen = new Penggunaan($keluhan, $request->tahun);
     
         $data = [
             'keluhannya' => $keluhan,
-            'khasiatnya' => $rekom->khasiat(),
-            'umurnya' => $rekom->umur(),
-            'jamunya' => $rekom->namaJamu(),
-            'sarannya' => $rekom->saran(),
+            'khasiatnya' => $rekomen->khasiat(),
+            'umurnya' => $rekomen->umur(),
+            'jamunya' => $rekomen->namaJamu(),
+            'sarannya' => $rekomen->saran(),
         ];
     
         return view('rekomendasi', compact('data'));
@@ -47,13 +47,13 @@ class Jamu
     
     public function namaJamu()
     {
-        if($this->keluhan == 'Keseleo dan kurang nafsu makan' || $this->keluhan == 'kurang nafsu makan'){
+        if($this->keluhan == 'Keseleo dan kurang nafsu makan'){
             return 'Beras Kencur';
         }else if($this->keluhan=='Pegal-pegal'){
             return 'Kunyit Asam';
-        }else if($this->keluhan=='Darah tinggi dan gula darah' || $this->keluhan == 'gula darah'){
+        }else if($this->keluhan=='Darah tinggi dan gula darah'){
             return 'Brotowali';
-        }else if($this->keluhan=='Kram perut dan masuk angin' || $this->keluhan == 'masuk angin'){
+        }else if($this->keluhan=='Kram perut dan masuk angin'){
             return 'Temulawak';
         }else{
             return 'Tidak ditemukan jamu';
@@ -82,18 +82,18 @@ class Penggunaan extends Jamu
 {
     public function saran(){// method saran
         if($this->umur()<=10){
-            $status = 'Dikonsumsi 1x';
+            $status = '1x';
         }else{
-            $status = 'Dikonsumsi 2x';
+            $status = '2x';
         }
 
-        if($this->namaJamu() == 'Beras Kencur' && $this->keluhan == 'keseleo'){
+        if($this->namaJamu() == 'Beras Kencur' && $this->keluhan == 'Keseleo dan kurang nafsu makan'){
             $penggunaan = 'Dioleskan';
         }else{
             $penggunaan = 'Dikonsumsi';
         }
 
-        return 'Pengkonsumsian : '. $status . ' & '. 'Penggunaan : '. $penggunaan;
+        return $penggunaan.' '.$status;
 
     }
 }

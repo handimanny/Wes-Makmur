@@ -28,13 +28,15 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index']);
 
-Route::get('halaman/{id}/lihat', [HomeController::class,'halaman'])->name('halaman');
 
 Route::resource('rekomendasi', RekomendasiController::class);
 
 // Route::middleware(['auth','admin','editor'])->group(function () {
-// });
+    
 Route::middleware(['auth'])->group(function () {
+    
+    Route::get('halaman/{id}/lihat', [HomeController::class,'halaman'])->name('halaman');
+
     Route::resource('kategori', KategoriController::class);
     Route::get('deletekategori/{id}', [KategoriController::class,'destroy'])->name('deletekategori');
     Route::resource('postingan', PostinganController::class);

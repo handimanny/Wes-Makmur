@@ -14,7 +14,7 @@
                         <div class="input-group">
                             <div class="col pe-1">
                                 <label>Keluhan :</label>
-                                <select name="keluhan" class="form-control" >
+                                <select name="keluhan" class="form-control" autofocus>
                                     <option value="">Pilih keluhan</option>
                                     <option value="Keseleo dan kurang nafsu makan">Keseleo dan kurang nafsu makan</option>
                                     <option value="Pegal-pegal">Pegal-pegal</option>
