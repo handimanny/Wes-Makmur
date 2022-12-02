@@ -61,8 +61,7 @@
                 <div class="mb-3">
                 <label for="status" class="form-label">Edit Status</label>
                 <select class="form-control" id="status" name="status">
-                    <option selected>Open this select menu</option>
-                    <option value="tampil"  @selected($data->status=='tampil')>Tampil</option>
+                    <option selected value="tampil"  @selected($data->status=='tampil')>Tampil</option>
                     <option value="tidak"  @selected($data->status=='tidak')>Tidak Tampil</option>
                 </select>
                 </div>

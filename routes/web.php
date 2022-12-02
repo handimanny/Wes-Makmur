@@ -33,7 +33,7 @@ Route::resource('rekomendasi', RekomendasiController::class);
 
 // Route::middleware(['auth','admin','editor'])->group(function () {
     
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth'],['checkRole:editor,admin'])->group(function () {
     
     Route::get('halaman/{id}/lihat', [HomeController::class,'halaman'])->name('halaman');
 

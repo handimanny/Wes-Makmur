@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Kategori;
 use App\Models\Produk;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class ProdukController extends Controller
@@ -93,7 +94,11 @@ class ProdukController extends Controller
     public function update(Request $request, $id)
     {
         //edit data produk
-        $data = Produk::findOrFail($id);
+
+        // dd($request);
+        //jika role admin
+        if (Auth::user()->role == 'admin'){
+            $data = Produk::findOrFail($id);
         if ($request->file('foto')) {
             $file = $request->file('foto')->store('img');
             if ($request->foto){
@@ -116,6 +121,33 @@ class ProdukController extends Controller
                 'kategori_id' => $request->kategori_id,
                 'status' => $request->status,
             ]);
+        }
+
+        //jika role editor
+        }elseif(Auth::user()->role == 'editor'){
+
+            $data = Produk::findOrFail($id);
+            if ($request->file('foto')) {
+                $file = $request->file('foto')->store('img');
+                if ($request->foto){
+                    Storage::delete($data->foto);
+                }
+                $data->update([
+                    'namaProduk' => $request->namaProduk,
+                    'foto' => $file,
+                    'harga' => $request->harga,
+                    'descProduk' => $request->descProduk,
+                    'kategori_id' => $request->kategori_id,
+                ]);
+            } else {
+                $data->update([
+                    'namaProduk' => $request->namaProduk,
+                    'foto' => $data->foto,
+                    'harga' => $request->harga,
+                    'descProduk' => $request->descProduk,
+                    'kategori_id' => $request->kategori_id,
+                ]);
+            }
         }
         return redirect('/produk')->with('success', 'berhasil edit produk');
     }

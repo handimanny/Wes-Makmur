@@ -9,6 +9,7 @@ class Produk extends Model
 {
     use HasFactory;
     protected $guarded = ['id'];
+    protected $nullable = ['status'];
     protected $table = 'produks'; //for relasi
 
     public function kategori() //for relasi
