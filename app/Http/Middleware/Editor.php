@@ -17,7 +17,7 @@ class Editor
      */
     public function handle(Request $request, Closure $next)
     {
-        if (Auth::user()->role == 'editor'){
+        if (Auth::user()->role != "Editor" || Auth::user()->role != "Admin"){
             return redirect('login');
         }
         return $next($request);

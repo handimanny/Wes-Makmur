@@ -28,12 +28,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index']);
 
-
 Route::resource('rekomendasi', RekomendasiController::class);
-
-// Route::middleware(['auth','admin','editor'])->group(function () {
     
-Route::middleware(['auth'],['checkRole:editor,admin'])->group(function () {
+Route::middleware(['auth','editor'])->group(function () {
     
     Route::get('halaman/{id}/lihat', [HomeController::class,'halaman'])->name('halaman');
 
