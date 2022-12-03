@@ -58,7 +58,6 @@
                 <div class="container">
                     <div class="row">
                         @foreach ($produk as $file)
-                        <!-- <div class="col-lg-4 col-md-2 col-sm-2 mt-2"> -->
                         <div class="col-lg-4 mt-2">
                             <div class="card">
                                 <div style="max-height:100px; overflow:hidden;" >
