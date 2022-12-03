@@ -7,8 +7,6 @@ use App\Http\Controllers\PostinganController;
 use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\RekomendasiController;
 use Illuminate\Support\Facades\Auth;
-// use Illuminate\Support\Facades\Admin;
-// use Illuminate\Support\Facades\Editor;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -33,7 +31,7 @@ Route::resource('rekomendasi', RekomendasiController::class);
 Route::get('halaman/{id}/lihat', [HomeController::class,'halaman'])->name('halaman')->middleware('auth');
 
 Route::middleware(['auth','editor'])->group(function () {
-    
+
     Route::resource('kategori', KategoriController::class);
     Route::get('deletekategori/{id}', [KategoriController::class,'destroy'])->name('deletekategori');
 
